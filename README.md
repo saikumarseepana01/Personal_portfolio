@@ -3,7 +3,7 @@
 👋 Hi there! I'm **Sai Kumar**, an enthusiastic and dedicated software engineer with a passion for building creative, efficient solutions. This repository contains the source code for my personal portfolio website.
 
 ## 🌐 Live Demo
-Check out the live version here: [Portfolio Website](https://saikumarseepana01.github.io)
+Check out the live version here:  [Portfolio](https://saikumarseepana01.github.io/Personal_portfolio/)
 
 ## 🧑‍💻 About Me
 I'm a final-year Computer Science student with hands-on experience in:
