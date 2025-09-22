@@ -35,6 +35,19 @@ body {
   padding: 0 15px;
 }
 
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 
 
 
@@ -111,6 +124,15 @@ body {
 
 .header ul li a:hover {
   color: #fed700;
+}
+
+.header ul li a:focus,
+.btn:focus,
+.profile-text .social i:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #fed700;
+  outline-offset: 2px;
 }
 
 .header .menu_icon {
@@ -205,20 +227,16 @@ profile-photo .img {
   flex-basis: 60%;
 }
 
-.about-content h4 {
+.about-content h2 {
   color: #fed700;
   font-size: 40px;
   line-height: 70px;
   text-transform: capitalize;
 }
 
-.about-content ul {
+.about-content p {
   color: #fff;
   text-align: justify;
-}
-
-.about-content ul li {
-  list-style-type: disc;
   margin-bottom: 10px;
 }
 
@@ -268,7 +286,7 @@ profile-photo .img {
   padding: 100px 0;
 }
 
-.timeline-section .title {
+.timeline-section .title, .skills-title h2, .frameworks-title h2, .project-title h2, .contact-title h2 {
   color: #fed700;
   font-size: 24px;
   margin-bottom: 30px;
@@ -339,7 +357,7 @@ profile-photo .img {
   line-height: 25px;
   font-size: 16px;
   text-align: justify;
-  list-style: none;
+  /* list-style: none; */
 }
 /* --------------------------Skills ----------------------------- */
 .skills-content {
@@ -352,7 +370,7 @@ profile-photo .img {
   text-align: center;
 }
 
-.skills-content .skills-title h4 {
+.skills-content .skills-title h2 {
   font-size: 40px;
   text-transform: capitalize;
   color: #fed700;
@@ -376,8 +394,8 @@ profile-photo .img {
   padding: 8px;
   text-align: center;
   flex-basis: 32%;
-  transition: .3s;
-  min-width: 250px;
+  transition: 0.3s;
+  min-width: 220px;
   margin: 5px;
 }
 .skill:hover {
@@ -408,14 +426,6 @@ profile-photo .img {
   transition: width 2s ease-in-out;
 }
 
-/* Define widths for each skill */
-.progress-bar span.html { width: 98%; }
-.progress-bar span.css { width: 89%; }
-.progress-bar span.js { width: 80%; }
-.progress-bar span.java { width: 87%; }
-.progress-bar span.python { width: 79%; }
-.progress-bar span.c { width: 99%; }
-.progress-bar span.csharp { width: 85%; }
 /*-------------------------- frameworks------------------------ */
 .frameworks-content {
   padding: 100px 0;
@@ -426,7 +436,7 @@ profile-photo .img {
   margin-bottom: 60px;
   text-align: center;
 }
-.frameworks-content .frameworks-title h4 {
+.frameworks-content .frameworks-title h2 {
   font-size: 40px;
   text-transform: capitalize;
   color: #fed700;
@@ -450,8 +460,8 @@ profile-photo .img {
   padding: 8px;
   text-align: center;
   flex-basis: 32%;
-  transition: .3s;
-  min-width: 250px;
+  transition: 0.3s;
+  min-width: 220px;
   margin: 5px;
 }
 .framework:hover {
@@ -478,7 +488,7 @@ profile-photo .img {
   text-align: center;
 }
 
-.project-title h4 {
+.project-title h2 {
   text-transform: uppercase;
   font-size: 40px;
   line-height: 40px;
@@ -544,7 +554,7 @@ profile-photo .img {
   text-align: center;
 }
 
-.contact-content .contact-title h4 {
+.contact-content .contact-title h2 {
   font-size: 40px;
   text-transform: capitalize;
   color: #fed700;
@@ -665,7 +675,18 @@ input ,textarea{
   }
 
   .header ul {
-    display: none;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #2a2a2a;
+    padding: 10px 0;
+  }
+
+  .header ul.active {
+    display: flex; /* Show when active */
   }
 
   .header i {

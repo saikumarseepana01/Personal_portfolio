@@ -43,6 +43,14 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
+  // Toggle mobile menu
+  $(".menu_icon").click(function () {
+    $(".header ul").toggleClass("active");
+    // Optional: change icon to 'X'
+    var icon = $(this).find("i");
+    icon.toggleClass("fa-bars fa-times");
+  });
+
 
   //Initial content revealing js
   ScrollReveal({
@@ -84,6 +92,25 @@ $(document).ready(function () {
       .catch(error => console.error('Error!', error.message))
   })
 
+  // Animate progress bars on scroll
+  const skillsSection = document.getElementById('MySkills');
+  const progressBars = document.querySelectorAll('.progress-bar span');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        progressBars.forEach(bar => {
+          const targetWidth = bar.getAttribute('data-width');
+          bar.style.width = targetWidth;
+        });
+        observer.unobserve(skillsSection); // Stop observing after animation
+      }
+    });
+  }, {
+    threshold: 0.5 // Trigger when 50% of the section is visible
+  });
+
+  observer.observe(skillsSection);
 });
 
 function updateActiveSection() {
@@ -127,5 +154,3 @@ function typeName() {
 window.addEventListener("load", function () {
   setTimeout(typeName, 1200); // 1.2-second delay before starting the typing effect
 });
-
-
