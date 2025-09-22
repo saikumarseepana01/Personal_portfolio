@@ -6,13 +6,7 @@
 Check out the live version here:  [Portfolio](https://saikumarseepana01.github.io/Personal_portfolio/)
 
 ## 🧑‍💻 About Me
-I'm a final-year Computer Science student with hands-on experience in:
-- 💻 Programming: C, Java, Python, C#
-- 🌐 Web Development: HTML, CSS, JavaScript
-- 📊 Frameworks: ADO.NET
-- 🛠️ Tools: VSCode, PyCharm, Git
-
-I enjoy learning, building, and sharing innovative tech solutions that make an impact. 💡
+Currently working as a Programmer Analyst Trainee at Cognizant, focusing on making websites and mobile apps more accessible and user-friendly. Skilled in C, Java, Python, C#, HTML, CSS, and JavaScript. I aim to grow into a full-stack developer and machine learning engineer, using my skills to build inclusive and impactful technology that helps people in real ways.
 
 ## 📚 Education
 - 🎓 **B.Tech CSE (AI & ML)** – Chalapathi Institute of Engineering & Technology (2021–2025) – 79%
