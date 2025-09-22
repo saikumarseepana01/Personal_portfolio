@@ -29,8 +29,10 @@ body {
 }
 
 .container {
-  width: 1170px;
+  max-width: 1170px;
+  width: 100%;
   margin: auto;
+  padding: 0 15px;
 }
 
 
@@ -261,65 +263,53 @@ profile-photo .img {
   border-color: #fed700;
 }
 
-
-/*---------------------------Education & Internship---------------------------*/
-
-.education-content .row {
-  display: flex;
-  border-radius: 5px;
-  height: 400px;
-  margin-bottom: 250px;
+/*---------------------------Experience---------------------------*/
+.timeline-section {
+  padding: 100px 0;
 }
 
-.education-content .title {
+.timeline-section .title {
   color: #fed700;
-}
-
-.education-content .row .education,
-.education-content .row .internship {
-  color: #e5e5e5;
-  flex: 0 0 50%;
-  max-width: 50%;
-  margin-top: 30px;
-}
-
-.education-content h3.title {
   font-size: 24px;
   margin-bottom: 30px;
   font-weight: 700;
 }
 
-.education-content .row.timeline-box {
+
+/*---------------------------Education & Internship---------------------------*/
+
+.timeline-box {
   flex: 0 0 100%;
   max-width: 100%;
 }
 
-.education-content .row .timeline {
+.timeline {
   /* background-color:#e5e5e5; */
   padding: 30px 15px;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   width: 100%;
   position: relative;
+  color: #e5e5e5;
 }
 
-.education-content .row .timeline-item {
+.timeline-item {
   position: relative;
   padding-left: 37px;
   padding-bottom: 50px;
 }
 
-.education-content .row .internship .timeline-item {
+.internship .timeline-item {
   position: relative;
   padding-left: 37px;
   padding-bottom: 30px;
 }
 
-.education-content .row .timeline-item:last-child {
+.timeline-item:last-child {
   padding-bottom: 0;
 }
 
-.education-content .row .timeline-item::before {
+.timeline-item::before {
   content: "";
   width: 1px;
   position: absolute;
@@ -329,7 +319,7 @@ profile-photo .img {
   background-color: #fed700;
 }
 
-.education-content .row .circle-dot {
+.circle-dot {
   position: absolute;
   left: 0;
   top: 0;
@@ -339,22 +329,17 @@ profile-photo .img {
   background-color: #e5e5e5;
 }
 
-.education-content .row .timeline-title {
+.timeline-title {
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 12px;
 }
 
-.education-content .row .internship .timeline-title {
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.education-content .row .timeline-text {
+.timeline-text {
   line-height: 25px;
   font-size: 16px;
   text-align: justify;
+  list-style: none;
 }
 /* --------------------------Skills ----------------------------- */
 .skills-content {
@@ -392,6 +377,7 @@ profile-photo .img {
   text-align: center;
   flex-basis: 32%;
   transition: .3s;
+  min-width: 250px;
   margin: 5px;
 }
 .skill:hover {
@@ -465,6 +451,7 @@ profile-photo .img {
   text-align: center;
   flex-basis: 32%;
   transition: .3s;
+  min-width: 250px;
   margin: 5px;
 }
 .framework:hover {
@@ -644,7 +631,8 @@ input ,textarea{
 /* Medium layout */
 @media only screen and (min-width:1000px) and (max-width:1200px) {
   .container {
-    width: 970px;
+    max-width: 970px;
+    width: 100%;
   }
 }
 
@@ -664,17 +652,14 @@ input ,textarea{
 /* tablet layout */
 @media only screen and (min-width:768px) and (max-width:999px) {
   .container {
-    width: 750px;
+    max-width: 750px;
+    width: 100%;
   }
 }
 
 
 /* Mobile Layout */
 @media only screen and (max-width:767px) {
-  .container {
-    width: 350px;
-  }
-
   .header .menu_icon {
     display: block;
   }
@@ -685,10 +670,6 @@ input ,textarea{
 
   .header i {
     color: #e5e5e5;
-  }
-
-  .profile-text {
-    width: 350px;
   }
 
   .FirstElement .profile-text p {
@@ -706,17 +687,9 @@ input ,textarea{
     margin-top: 30px;
   }
 
-  .education-content .row {
-    flex-direction: column;
-    height: auto;
-    margin-bottom: 50px;
-  }
-
-  .education-content .row .education,
-  .education-content .row .internship {
+  .skill,
+  .framework {
     flex-basis: 100%;
-    max-width: 100%;
-    margin-top: 30px;
   }
 
   .project {
