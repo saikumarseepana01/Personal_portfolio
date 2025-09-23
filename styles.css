@@ -15,7 +15,8 @@
   --header-sticky-bg: var(--bg-color);
   --footer-border: rgba(255, 255, 255, 0.1);
   --footer-text: rgba(255, 255, 255, 0.4);
-  --mobile-menu-bg: rgba(20, 20, 20, 0.9);
+  --mobile-menu-bg: rgba(20, 20, 20, 0.8); /* Reduced alpha for better blur */
+  --nav-close-btn-color: var(--text-color);
 }
 
 [data-theme="light"] {
@@ -33,7 +34,8 @@
   --header-sticky-bg: #2d3748; /* Dark background for light theme sticky header */
   --footer-border: rgba(0, 0, 0, 0.1);
   --footer-text: #555;
-  --mobile-menu-bg: rgba(244, 244, 244, 0.9);
+  --mobile-menu-bg: rgba(45, 55, 72, 0.85); /* Use a dark background for the light theme menu */
+  --nav-close-btn-color: #e5e5e5; /* Make the close button light to contrast with the dark menu */
 }
 
 * {
@@ -97,6 +99,16 @@ body {
 
 .skip-link:focus {
   top: 0;
+}
+
+/* Use scroll-margin-top to offset anchor links for the fixed header */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Set a consistent, smaller padding for all sections */
+main > section {
+  padding-top: 60px;
 }
 
 
@@ -213,7 +225,7 @@ textarea:focus {
   left: 0;
   right: 0;
   height: 3px;
-  background-color: var(--text-color-light);
+  background-color: #e5e5e5; /* Use a consistent light color for the hamburger lines */
   transition: transform 0.3s ease;
 }
 
@@ -227,6 +239,12 @@ textarea:focus {
 
 .nav-toggle[aria-expanded="true"]::before {
   transform: translateY(6px) rotate(45deg);
+}
+
+/* Change color of the 'X' (close) button when menu is open */
+.nav-toggle[aria-expanded="true"]::before,
+.nav-toggle[aria-expanded="true"]::after {
+  background-color: var(--nav-close-btn-color);
 }
 
 /* --- Theme Toggle Button --- */
@@ -274,8 +292,9 @@ textarea:focus {
 }
 
 .FirstElement .profile-photo {
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  width: 100%; /* Allow the element to be flexible */
+  aspect-ratio: 1 / 1; /* Maintain a square shape */
   border-radius: 50%;
   overflow: hidden;
   border: 15px solid var(--card-border-color);
@@ -307,11 +326,13 @@ profile-photo .img {
 .profile-text h1 {
   color: var(--heading-color);
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .profile-text .intro-text {
   font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
 }
 
 .profile-text p {
@@ -335,7 +356,6 @@ profile-photo .img {
 /*---------------------------About---------------------------*/
 
 .about-area {
-  padding-top: 130px;
   background-color: var(--bg-color);
 }
 .highlight-text {
@@ -357,14 +377,15 @@ profile-photo .img {
 .about-content h2 {
   color: var(--heading-color);
   font-size: 40px;
-  line-height: 70px;
+  line-height: 1.3;
   text-transform: capitalize;
+  margin-bottom: 20px;
 }
 
 .about-content p {
   color: var(--text-color);
   text-align: justify;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .about-skills {
@@ -409,9 +430,6 @@ profile-photo .img {
 }
 
 /*---------------------------Experience---------------------------*/
-.timeline-section {
-  padding: 100px 0;
-}
 
 .timeline-section .title, .skills-title h2, .frameworks-title h2, .project-title h2, .contact-title h2 {
   color: var(--heading-color);
@@ -488,7 +506,6 @@ profile-photo .img {
 }
 /* --------------------------Skills ----------------------------- */
 .skills-content {
-  padding: 100px 0;
   color: var(--text-color);
   text-align: center;
 }
@@ -560,7 +577,6 @@ profile-photo .img {
 
 /*-------------------------- frameworks------------------------ */
 .frameworks-content {
-  padding: 100px 0;
   color: var(--text-color);
   text-align: center;
 }
@@ -616,7 +632,6 @@ profile-photo .img {
 
 /*---------------------------Projects---------------------------*/
 .project-content {
-  padding: 90px 0;
   /* color:#fff;  */
 }
 
@@ -686,7 +701,6 @@ profile-photo .img {
 
 /*---------------------------Contact Me---------------------------*/
 .contact-content {
-  padding: 100px 0;
   color: var(--text-color);
   text-align: center;
 }
@@ -784,11 +798,14 @@ input ,textarea{
 @media(max-width:1050px) {
   .FirstElement {
     flex-direction: column;
-    padding-top: 2rem;
+    padding-top: 120px; /* Increased padding to prevent header overlap */
   }
 
   .profile-text {
     padding: 40px 0px;
+  }
+  .FirstElement .profile-photo {
+    margin-bottom: 30px; /* Added margin below the photo for spacing */
   }
 }
 
@@ -812,7 +829,7 @@ input ,textarea{
 
   .main-nav {
     position: fixed;
-    inset: 0 0 0 30%; /* top, right, bottom, left. Covers right 70% of screen */
+    inset: 0 0 0 40%; /* top, right, bottom, left. Covers right 60% of screen */
     z-index: 999; /* Ensure menu is on top of other content */
     display: flex;
     flex-direction: column;
@@ -824,6 +841,7 @@ input ,textarea{
     backdrop-filter: blur(1rem);
     -webkit-backdrop-filter: blur(1rem); /* For Safari */
     transform: translateX(100%);
+    border-left: 2px solid var(--card-border-color);
     transition: transform 350ms ease-out;
   }
 
@@ -834,19 +852,33 @@ input ,textarea{
   .main-nav .navbar {
     flex-direction: column;
     gap: 1.5rem;
-    text-align: center;
+    text-align: center; /* Align text to the center */
   }
 
   .main-nav .navbar a {
     color: var(--text-color); /* Use theme's text color for mobile menu links */
   }
 
+  /* Override mobile nav link color for light theme to be visible on the new dark background */
+  [data-theme="light"] .main-nav .navbar a {
+    color: #e5e5e5;
+  }
+
+  .main-nav .theme-toggle {
+    color: var(--text-color); /* Ensure toggle is visible in mobile menu */
+  }
+
+  /* Override mobile toggle button color for light theme to be visible on the new dark background */
+  [data-theme="light"] .main-nav .theme-toggle {
+    color: #e5e5e5;
+  }
+
   .main-nav .navbar li {
     margin: 0; /* Remove horizontal margin from desktop view */
   }
 
-  .FirstElement .profile-text p {
-    text-align: justify;
+  .about-area {
+    margin-top: 30px; /* Add space above the about section on mobile */
   }
 
   .about {
