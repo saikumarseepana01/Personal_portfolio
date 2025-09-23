@@ -17,6 +17,8 @@
   --footer-text: rgba(255, 255, 255, 0.4);
   --mobile-menu-bg: rgba(20, 20, 20, 0.8); /* Reduced alpha for better blur */
   --nav-close-btn-color: var(--text-color);
+  --section-bg-color: #2a2a2a;
+  --section-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 [data-theme="light"] {
@@ -32,10 +34,12 @@
   --form-bg: #ffffff;
   --form-text: #000000;
   --header-sticky-bg: #2d3748; /* Dark background for light theme sticky header */
-  --footer-border: rgba(0, 0, 0, 0.1);
-  --footer-text: #555;
+  --footer-border: rgba(255, 255, 255, 0.1); /* Light border for dark footer */
+  --footer-text: rgba(255, 255, 255, 0.7); /* Light text for dark footer */
   --mobile-menu-bg: rgba(45, 55, 72, 0.85); /* Use a dark background for the light theme menu */
   --nav-close-btn-color: #e5e5e5; /* Make the close button light to contrast with the dark menu */
+  --section-bg-color: #ffffff;
+  --section-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -109,6 +113,12 @@ section[id] {
 /* Set a consistent, smaller padding for all sections */
 main > section {
   padding-top: 60px;
+  padding: 60px 0;
+  margin-bottom: 30px;
+  background-color: var(--section-bg-color);
+  border-radius: 12px;
+  box-shadow: var(--section-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 
@@ -204,6 +214,12 @@ input:focus,
 textarea:focus {
   outline: 2px solid var(--heading-color);
   outline-offset: 2px;
+}
+
+/* Override for better focus visibility on light theme inputs */
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus {
+  outline-color: #555; /* Dark gray provides better contrast against white background */
 }
 
 /* --- Hamburger Menu Button --- */
@@ -631,9 +647,7 @@ profile-photo .img {
 }
 
 /*---------------------------Projects---------------------------*/
-.project-content {
-  /* color:#fff;  */
-}
+
 
 .project-title {
   margin-bottom: 60px;
@@ -725,8 +739,6 @@ profile-photo .img {
 .contact textarea {
   width: 100%;
   padding: 15px;
-  border: 0;
-  color : var(--form-text);
   margin-bottom: 10px;
 }
 
@@ -761,6 +773,7 @@ input ,textarea{
 
 /*---------------------------Footer---------------------------*/
 .footer {
+  background-color: var(--bg-color);
   max-width: 950px;
   margin: 0 auto;
   padding: 15px 0 26px;
@@ -770,6 +783,11 @@ input ,textarea{
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+[data-theme="light"] .footer {
+  background-color: var(--header-sticky-bg); /* Match header bg in light mode */
+  border-radius: 12px 12px 0 0; /* Round top corners to match sections */
 }
 
 .footer .message {
