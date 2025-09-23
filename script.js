@@ -45,10 +45,18 @@ $(document).ready(function () {
 
   // Toggle mobile menu
   $(".menu_icon").click(function () {
-    $(".header ul").toggleClass("active");
+    $(".navbar").toggleClass("active");
     // Optional: change icon to 'X'
     var icon = $(this).find("i");
     icon.toggleClass("fa-bars fa-times");
+  });
+
+  // Close mobile menu on link click
+  $(".navbar a").on("click", function () {
+    if ($(".navbar").hasClass("active")) {
+      $(".navbar").removeClass("active");
+      $(".menu_icon").find("i").removeClass("fa-times").addClass("fa-bars");
+    }
   });
 
 
