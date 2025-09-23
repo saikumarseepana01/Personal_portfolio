@@ -2,17 +2,11 @@ $(document).ready(function () {
 
   //sticky header
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 1) {
-      $(".header-area").addClass("sticky");
-    } else {
-      $(".header-area").removeClass("sticky");
-    }
-
     // Update the active section in the header
     updateActiveSection();
   });
 
-  $(".header ul li a").click(function (e) {
+  $(".navbar a").click(function (e) {
     e.preventDefault();
 
     var target = $(this).attr("href");
@@ -29,7 +23,9 @@ $(document).ready(function () {
         500
       );
     } else {
-      var offset = $(target).offset().top - 40;
+      // Get header height dynamically for accurate offset
+      const headerHeight = $(".header-area").outerHeight();
+      var offset = $(target).offset().top - headerHeight; // Adjusted offset
 
       $("html, body").animate(
         {
@@ -39,25 +35,49 @@ $(document).ready(function () {
       );
     }
 
-    $(".header ul li a").removeClass("active");
+    $(".navbar a").removeClass("active");
     $(this).addClass("active");
   });
 
-  // Toggle mobile menu
-  $(".menu_icon").click(function () {
-    $(".navbar").toggleClass("active");
-    // Optional: change icon to 'X'
-    var icon = $(this).find("i");
-    icon.toggleClass("fa-bars fa-times");
+  // --- Hamburger Menu Logic (New) ---
+  const navToggle = document.querySelector('.nav-toggle');
+  const primaryNav = document.querySelector('.main-nav');
+
+  navToggle.addEventListener('click', () => {
+      const isVisible = primaryNav.getAttribute('data-visible') === 'true';
+      primaryNav.setAttribute('data-visible', !isVisible);
+      navToggle.setAttribute('aria-expanded', !isVisible);
   });
 
-  // Close mobile menu on link click
-  $(".navbar a").on("click", function () {
-    if ($(".navbar").hasClass("active")) {
-      $(".navbar").removeClass("active");
-      $(".menu_icon").find("i").removeClass("fa-times").addClass("fa-bars");
-    }
+  // Close menu when a nav link is clicked
+  primaryNav.addEventListener('click', (e) => {
+      if (e.target.closest('a')) { // Check if a link inside the nav was clicked
+          primaryNav.setAttribute('data-visible', false);
+          navToggle.setAttribute('aria-expanded', false);
+      }
   });
+
+  // --- Theme Switcher Logic ---
+  const themeToggleButton = document.getElementById('theme-toggle-btn');
+  const body = document.body;
+
+  // Function to apply the theme
+  const applyTheme = (theme) => {
+    body.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  };
+
+  // On initial load, apply the saved theme or default to dark
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  applyTheme(savedTheme);
+
+  if (themeToggleButton) {
+    themeToggleButton.addEventListener('click', () => {
+      const newTheme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+    });
+  }
+
 
 
   //Initial content revealing js
@@ -105,7 +125,8 @@ $(document).ready(function () {
 function updateActiveSection() {
   var scrollPosition = $(window).scrollTop();
 
-  // Checking if scroll position is at the top of the page
+  const headerHeight = $(".header-area").outerHeight(); // Get header height dynamically
+
   if (scrollPosition === 0) {
     $(".header ul li a").removeClass("active");
     $(".header ul li a[href='#home']").addClass("active");
@@ -118,9 +139,9 @@ function updateActiveSection() {
     var offset = $(this).offset().top;
     var height = $(this).outerHeight();
 
-    if (
-      scrollPosition >= offset - 40 &&
-      scrollPosition < offset + height - 40
+    if ( // Adjusted offset for fixed header
+      scrollPosition >= offset - headerHeight &&
+      scrollPosition < offset + height - headerHeight
     ) {
       $(".header ul li a").removeClass("active");
       $(".header ul li a[href='#" + target + "']").addClass("active");

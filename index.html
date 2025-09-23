@@ -17,6 +17,9 @@
 
 <body>
 
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+
     <!-------------------------- Header Area -------------------------->
     <header class="header-area">
         <div class="container">
@@ -28,28 +31,26 @@
                 </a>
                 <br>
 
-                <ul class="navbar">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#internship">Internship</a></li>
-                    <li><a href="#MySkills">MySkills</a></li>
-                    <li><a href="#FrameWorks">FrameWorks</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <nav class="main-nav" id="primary-navigation" data-visible="false">
+                    <ul class="navbar nav-list" id="navbar">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#FrameWorks">FrameWorks</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </nav>
 
-                </ul>
-
-                <div class="menu_icon">
-                    <i class="fa fa-bars"></i>
-                </div>
+                <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu</span></button>
 
             </div>
         </div>
     </header>
 
-    <!-------------------------- Home Page -------------------------->
+    <main id="main-content">
     <div class="FirstElement" id="home">
         <div class="profile-photo">
             <img src="files/Me.jpg" alt="A headshot of Sai Kumar">
@@ -57,7 +58,7 @@
         <div class="profile-text">
             <h5>Hi I'm </h5><br>
             <h1 id="typing-name"></h1><br>
-            <p>
+            <p class="intro-text">
                 Welcome to my portfolio website! I’m an enthusiastic and dedicated software engineer driven by curiosity
                 and innovation. I enjoy building creative, efficient solutions and continuously expanding my skill set.
                 With a solid foundation in coding and problem-solving, I’m eager to contribute meaningfully to the world
@@ -86,7 +87,7 @@
 
                 <div class="about-content">
                     <h2>About Me</h2>
-                    <p>Currently working as a Programmer Analyst Trainee at <strong style="color: aqua">Cognizant</strong>, focusing on making websites and mobile apps more accessible and user-friendly. Skilled in C, Java, Python, C#, HTML, CSS, and JavaScript. I aim to grow into a full-stack developer and machine learning engineer, using my skills to build inclusive and impactful technology that helps people in real ways.</p>
+                    <p>Currently working as a Programmer Analyst Trainee at <strong class="highlight-text">Cognizant</strong>, focusing on making websites and mobile apps more accessible and user-friendly. Skilled in C, Java, Python, C#, HTML, CSS, and JavaScript. I aim to grow into a full-stack developer and machine learning engineer, using my skills to build inclusive and impactful technology that helps people in real ways.</p>
                     <p> My expertise in languages like Java, Python, and C#, along with web technologies, enables
                             me to confidently handle diverse projects and deliver high-quality solutions. I strongly
                             believe in continuous learning and adaptability, essential traits for thriving in the
@@ -365,10 +366,7 @@
             </div>
         </div>
     </section>
-    
-    <!-- Visually hidden class for accessibility -->
-    <div class="sr-only">This is a screen-reader-only class</div>
-
+    </main>
 
     <!-------------------------- JS -------------------------->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -384,7 +382,6 @@
         </div>
         <small class="copyright">&copy; Copyright 2025. All rights reserved.</small>
     </footer>
-
 </body>
 
 </html>
