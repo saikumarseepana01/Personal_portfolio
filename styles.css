@@ -401,6 +401,11 @@ profile-photo .img {
 .skill:hover {
   border-color: #fed700;
 }
+.skill i {
+  font-size: 40px;
+  color: #fed700;
+}
+
 .skill h4 {
   font-size: 26px;
   text-transform: capitalize;
